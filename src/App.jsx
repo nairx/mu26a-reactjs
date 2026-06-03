@@ -1,22 +1,85 @@
 import React from 'react'
-
-function Pass(){
-  return <div>Pass</div>
-}
-
-function Fail(){
-  return <div>Fail</div>
-}
-
+import { useState } from 'react'
 export default function App() {
-  let score = 10
   return (
     <div>
-      {score > 40 ? <Pass/> : <Fail/>}
+      <h2>Login Form</h2>
+      <p>
+        <input type="text" placeholder='Email' />
+      </p>
+      <p>
+        <input type="password" placeholder='Password' />
+      </p>
+      <button>Login</button>
     </div>
   )
 }
 
+// import React, { useState } from "react";
+// export default function App() {
+//   const [score, setScore] = useState(0);
+//   return (
+//     <div>
+//       {score}
+//       <button onClick={() => setScore(score + 1)}>Update Score</button>
+//     </div>
+//   );
+// }
+
+// import React from "react";
+// export default function App() {
+//   const greet = (name) => {
+//     alert(name);
+//   };
+//   return (
+//     <div>
+//       <button onClick={() => greet("Cathy")}>Click</button>
+//     </div>
+//   );
+// }
+
+// import React from 'react'
+
+// export default function App() {
+//   const greet = () => {
+//     alert("Hello")
+//   }
+//   return (
+//     <div><button onClick={greet}>Click</button></div>
+//   )
+// }
+
+// import React from 'react'
+// function Pass(){
+//   return <div>Pass</div>
+// }
+// export default function App() {
+//   let score = 20
+//   return (
+//     <div>
+//       {score > 40 && <Pass/> }
+//     </div>
+//   )
+// }
+
+// import React from 'react'
+
+// function Pass(){
+//   return <div>Pass</div>
+// }
+
+// function Fail(){
+//   return <div>Fail</div>
+// }
+
+// export default function App() {
+//   let score = 10
+//   return (
+//     <div>
+//       {score > 40 ? <Pass/> : <Fail/>}
+//     </div>
+//   )
+// }
 
 // import React from "react";
 
