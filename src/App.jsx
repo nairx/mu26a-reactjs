@@ -1,12 +1,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import axios from "axios"
 export default function App() {
   const [products, setProducts] = useState([]);
   const API_URL = "http://localhost:5000/products";
   const fetchProducts = async () => {
-    const res = await fetch(API_URL);
-    const data = await res.json();
-    setProducts(data);
+    const res = await axios.get(API_URL);
+    setProducts(res.data);
   };
   useEffect(() => {
     fetchProducts();
