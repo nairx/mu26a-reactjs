@@ -1,18 +1,44 @@
-import React from 'react'
-import { useState } from 'react'
+import React from "react";
+import { useState } from "react";
 export default function App() {
+  const [user, setUser] = useState({});
+  const [message, setMessage] = useState();
+  const users = [
+    { id: 1, email: "john@gmail.com", password: "1234" },
+    { id: 2, email: "amy@gmail.com", password: "4567" },
+  ];
+  const handleLogin = () => {
+    const found = users.find(
+      (element) =>
+        element.email === user.email && element.password === user.password,
+    );
+    if (found) {
+      setMessage("Welcome");
+    } else {
+      setMessage("Access Denied");
+    }
+  };
   return (
     <div>
       <h2>Login Form</h2>
+      {message}
       <p>
-        <input type="text" placeholder='Email' />
+        <input
+          type="text"
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
+          placeholder="Email"
+        />
       </p>
       <p>
-        <input type="password" placeholder='Password' />
+        <input
+          type="password"
+          onChange={(e) => setUser({ ...user, password: e.target.value })}
+          placeholder="Password"
+        />
       </p>
-      <button>Login</button>
+      <button onClick={handleLogin}>Login</button>
     </div>
-  )
+  );
 }
 
 // import React, { useState } from "react";
