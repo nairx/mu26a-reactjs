@@ -1,3 +1,22 @@
+export default function App() {
+  return (
+    <div>
+      <h3>Registration Form</h3>
+      <p>
+        <input type="text" placeholder="Name" />
+      </p>
+      <p>
+        <input type="text" placeholder="Email" />
+      </p>
+      <p>
+        <input type="password" placeholder="Password" />
+      </p>
+      <button>Submit</button>
+    </div>
+  );
+}
+
+
 // import { useEffect, useState } from "react";
 // import axios from "axios";
 // function App() {
@@ -43,88 +62,44 @@
 // export default App;
 
 // import React from "react";
-// function Register() {
-//   return (
-//     <div>
-//       <h3>Registration Form</h3>
-//       <p>
-//         <input type="text" placeholder="Name" />
-//       </p>
-//       <p>
-//         <input type="text" placeholder="Email" />
-//       </p>
-//       <p>
-//         <input type="password" placeholder="Password" />
-//       </p>
-//       <button>Submit</button>
-//     </div>
-//   );
-// }
-
-// function Login() {
-//   return (
-//     <div>
-//       <h3>Login Form</h3>
-//       <p>
-//         <input type="text" placeholder="Email" />
-//       </p>
-//       <p>
-//         <input type="password" placeholder="Password" />
-//       </p>
-//       <button>Submit</button>
-//     </div>
-//   );
-// }
-
+// import { useEffect, useState } from "react";
+// import axios from "axios"
 // export default function App() {
+//   const [products, setProducts] = useState([]);
+//   const [product,setProduct] = useState({})
+//   const API_URL = "http://localhost:5000/products";
+//   const fetchProducts = async () => {
+//     const res = await axios.get(API_URL);
+//     setProducts(res.data);
+//   };
+//   useEffect(() => {
+//     fetchProducts();
+//   }, []);
+//   const addProduct = async () => {
+//    const res = await axios.post(API_URL,product)
+//    fetchProducts()
+//   }
+
+//   const deleteProduct = async (id) => {
+//     const res = await axios.delete(API_URL+"/"+id)
+//     fetchProducts()
+//   }
 //   return (
 //     <div>
-//       <Register />
-//       <hr />
-//       <Login />
+//       <p>
+//         <input type="text"
+//         onChange={(e)=>setProduct({...product,name:e.target.value})}
+//         placeholder="Name" />
+//         <input type="number"
+//         onChange={(e)=>setProduct({...product,price:e.target.value})}
+//         placeholder="Price" />
+//         <button onClick={addProduct}>Add</button>
+//       </p>
+//       {products &&
+//         products.map((product) => <li key={product.id}>{product.name}-{product.price}-<button onClick={()=>deleteProduct(product._id)}>Delete</button></li>)}
 //     </div>
 //   );
 // }
-
-import React from "react";
-import { useEffect, useState } from "react";
-import axios from "axios"
-export default function App() {
-  const [products, setProducts] = useState([]);
-  const [product,setProduct] = useState({})
-  const API_URL = "http://localhost:5000/products";
-  const fetchProducts = async () => {
-    const res = await axios.get(API_URL);
-    setProducts(res.data);
-  };
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-  const addProduct = async () => {
-   const res = await axios.post(API_URL,product)
-   fetchProducts()
-  }
-
-  const deleteProduct = async (id) => {
-    const res = await axios.delete(API_URL+"/"+id)
-    fetchProducts()
-  }
-  return (
-    <div>
-      <p>
-        <input type="text"
-        onChange={(e)=>setProduct({...product,name:e.target.value})}
-        placeholder="Name" />
-        <input type="number"
-        onChange={(e)=>setProduct({...product,price:e.target.value})}
-        placeholder="Price" />
-        <button onClick={addProduct}>Add</button>
-      </p>
-      {products &&
-        products.map((product) => <li key={product.id}>{product.name}-{product.price}-<button onClick={()=>deleteProduct(product._id)}>Delete</button></li>)}
-    </div>
-  );
-}
 
 // import React from "react";
 // import { useState } from "react";
