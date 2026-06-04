@@ -1,21 +1,40 @@
+import { useState } from "react";
+import axios from "axios";
+
 export default function App() {
+  const [user, setUser] = useState({});
+  const API_URL = "http://localhost:5000/users";
+  const handleSubmit = async () => {
+    await axios.post(API_URL, user);
+  };
   return (
     <div>
       <h3>Registration Form</h3>
       <p>
-        <input type="text" placeholder="Name" />
+        <input
+          type="text"
+          onChange={(e) => setUser({ ...user, name: e.target.value })}
+          placeholder="Name"
+        />
       </p>
       <p>
-        <input type="text" placeholder="Email" />
+        <input
+          type="text"
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
+          placeholder="Email"
+        />
       </p>
       <p>
-        <input type="password" placeholder="Password" />
+        <input
+          type="password"
+          onChange={(e) => setUser({ ...user, password: e.target.value })}
+          placeholder="Password"
+        />
       </p>
-      <button>Submit</button>
+      <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 }
-
 
 // import { useEffect, useState } from "react";
 // import axios from "axios";
