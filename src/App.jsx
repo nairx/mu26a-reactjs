@@ -104,6 +104,11 @@ export default function App() {
    const res = await axios.post(API_URL,product)
    fetchProducts()
   }
+
+  const deleteProduct = async (id) => {
+    const res = await axios.delete(API_URL+"/"+id)
+    fetchProducts()
+  }
   return (
     <div>
       <p>
@@ -116,7 +121,7 @@ export default function App() {
         <button onClick={addProduct}>Add</button>
       </p>
       {products &&
-        products.map((product) => <li key={product.id}>{product.name}-{product.price}</li>)}
+        products.map((product) => <li key={product.id}>{product.name}-{product.price}-<button onClick={()=>deleteProduct(product._id)}>Delete</button></li>)}
     </div>
   );
 }
