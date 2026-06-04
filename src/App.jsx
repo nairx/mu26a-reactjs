@@ -91,6 +91,7 @@ import { useEffect, useState } from "react";
 import axios from "axios"
 export default function App() {
   const [products, setProducts] = useState([]);
+  const [product,setProduct] = useState({})
   const API_URL = "http://localhost:5000/products";
   const fetchProducts = async () => {
     const res = await axios.get(API_URL);
@@ -99,15 +100,23 @@ export default function App() {
   useEffect(() => {
     fetchProducts();
   }, []);
+  const addProduct = async () => {
+   const res = await axios.post(API_URL,product)
+   fetchProducts()
+  }
   return (
     <div>
       <p>
-        <input type="text" placeholder="Name" />
-        <input type="number" placeholder="Price" />
-        <button>Add</button>
+        <input type="text"
+        onChange={(e)=>setProduct({...product,name:e.target.value})}
+        placeholder="Name" />
+        <input type="number"
+        onChange={(e)=>setProduct({...product,price:e.target.value})}
+        placeholder="Price" />
+        <button onClick={addProduct}>Add</button>
       </p>
       {products &&
-        products.map((product) => <li key={product.id}>{product.name}</li>)}
+        products.map((product) => <li key={product.id}>{product.name}-{product.price}</li>)}
     </div>
   );
 }
