@@ -101,6 +101,11 @@ export default function App() {
   }, []);
   return (
     <div>
+      <p>
+        <input type="text" placeholder="Name" />
+        <input type="number" placeholder="Price" />
+        <button>Add</button>
+      </p>
       {products &&
         products.map((product) => <li key={product.id}>{product.name}</li>)}
     </div>
