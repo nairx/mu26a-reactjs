@@ -1,23 +1,111 @@
-import React from "react";
 import { useEffect, useState } from "react";
-import axios from "axios"
-export default function App() {
-  const [products, setProducts] = useState([]);
-  const API_URL = "http://localhost:5000/products";
-  const fetchProducts = async () => {
-    const res = await axios.get(API_URL);
-    setProducts(res.data);
+import axios from "axios";
+function App() {
+  const [notes, setNotes] = useState([]);
+  const [text, setText] = useState("");
+  const fetchNotes = async () => {
+    const res = await axios.get("http://localhost:5000/notes");
+    setNotes(res.data);
   };
   useEffect(() => {
-    fetchProducts();
+    fetchNotes();
   }, []);
+  const addNote = async () => {
+    await axios.post("http://localhost:5000/notes", { text });
+    setText("");
+    fetchNotes();
+  };
+  const deleteNote = async (id) => {
+    await axios.delete(`http://localhost:5000/notes/${id}`);
+    fetchNotes();
+  };
   return (
-    <div>
-      {products &&
-        products.map((product) => <li key={product.id}>{product.name}</li>)}
+    <div style={{ padding: "20px" }}>
+      <h2>Notes App</h2>
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Enter your note"
+      />
+      <button onClick={addNote}>Add</button>
+      <ol>
+        {notes && notes.map((note) => (
+          <li key={note._id}>
+            {note.text}{" "}
+            <button onClick={() => deleteNote(note._id)}>Delete</button>
+          </li>
+        ))}
+      </ol>
     </div>
   );
 }
+export default App;
+
+// import React from "react";
+// function Register() {
+//   return (
+//     <div>
+//       <h3>Registration Form</h3>
+//       <p>
+//         <input type="text" placeholder="Name" />
+//       </p>
+//       <p>
+//         <input type="text" placeholder="Email" />
+//       </p>
+//       <p>
+//         <input type="password" placeholder="Password" />
+//       </p>
+//       <button>Submit</button>
+//     </div>
+//   );
+// }
+
+// function Login() {
+//   return (
+//     <div>
+//       <h3>Login Form</h3>
+//       <p>
+//         <input type="text" placeholder="Email" />
+//       </p>
+//       <p>
+//         <input type="password" placeholder="Password" />
+//       </p>
+//       <button>Submit</button>
+//     </div>
+//   );
+// }
+
+// export default function App() {
+//   return (
+//     <div>
+//       <Register />
+//       <hr />
+//       <Login />
+//     </div>
+//   );
+// }
+
+// import React from "react";
+// import { useEffect, useState } from "react";
+// import axios from "axios"
+// export default function App() {
+//   const [products, setProducts] = useState([]);
+//   const API_URL = "http://localhost:5000/products";
+//   const fetchProducts = async () => {
+//     const res = await axios.get(API_URL);
+//     setProducts(res.data);
+//   };
+//   useEffect(() => {
+//     fetchProducts();
+//   }, []);
+//   return (
+//     <div>
+//       {products &&
+//         products.map((product) => <li key={product.id}>{product.name}</li>)}
+//     </div>
+//   );
+// }
 
 // import React from "react";
 // import { useState } from "react";
