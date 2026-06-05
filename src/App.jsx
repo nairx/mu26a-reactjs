@@ -1,64 +1,83 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Cart from "./Cart";
+import Home from "./Home";
+import RootLayout from "./RootLayout"
 export default function App() {
-  const [item, setItem] = useState({});
-  const [items, setItems] = useState([]);
-  const handleAdd = () => {
-    setItems([...items, item]);
-  };
-  const orderValue = items.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0,
-  );
-  const handleNext = async () => {
-    const obj = {
-      items,
-      orderValue,
-    };
-    await axios.post("http://localhost:5001/orders", obj);
-    setItem({})
-    setItems([])
-  };
-  return (
-    <div>
-      <h2>Supermarket Billing Counter</h2>
-      <p>
-        <select onChange={(e) => setItem({ ...item, name: e.target.value })}>
-          <option>-- Select Product --</option>
-          <option>Product 1</option>
-          <option>Product 2</option>
-          <option>Product 3</option>
-        </select>
-        <input
-          type="number"
-          onChange={(e) => setItem({ ...item, price: e.target.value })}
-          placeholder="Price"
-        />
-        <input
-          type="number"
-          onChange={(e) => setItem({ ...item, quantity: e.target.value })}
-          placeholder="Quantity"
-        />
-        <button onClick={handleAdd}>Add</button>
-      </p>
-      <p>
-        <ol>
-          {items &&
-            items.map((item) => (
-              <li>
-                {item.name}-{item.price}-{item.quantity}-
-                {item.price * item.quantity}
-              </li>
-            ))}
-        </ol>
-      </p>
-      <p>Order Value:{orderValue}</p>
-      <p>
-        <button onClick={handleNext}>Next</button>
-      </p>
-    </div>
-  );
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <RootLayout />,
+      children: [
+        { index: true, element: <Home /> },
+        { path: "cart", element: <Cart /> },
+      ],
+    },
+  ])
+  return <RouterProvider router={router} />;
 }
+
+// import React, { useState } from "react";
+// import axios from "axios";
+// export default function App() {
+//   const [item, setItem] = useState({});
+//   const [items, setItems] = useState([]);
+//   const handleAdd = () => {
+//     setItems([...items, item]);
+//   };
+//   const orderValue = items.reduce(
+//     (sum, item) => sum + item.price * item.quantity,
+//     0,
+//   );
+//   const handleNext = async () => {
+//     const obj = {
+//       items,
+//       orderValue,
+//     };
+//     await axios.post("http://localhost:5001/orders", obj);
+//     setItem({})
+//     setItems([])
+//   };
+//   return (
+//     <div>
+//       <h2>Supermarket Billing Counter</h2>
+//       <p>
+//         <select onChange={(e) => setItem({ ...item, name: e.target.value })}>
+//           <option>-- Select Product --</option>
+//           <option>Product 1</option>
+//           <option>Product 2</option>
+//           <option>Product 3</option>
+//         </select>
+//         <input
+//           type="number"
+//           onChange={(e) => setItem({ ...item, price: e.target.value })}
+//           placeholder="Price"
+//         />
+//         <input
+//           type="number"
+//           onChange={(e) => setItem({ ...item, quantity: e.target.value })}
+//           placeholder="Quantity"
+//         />
+//         <button onClick={handleAdd}>Add</button>
+//       </p>
+//       <p>
+//         <ol>
+//           {items &&
+//             items.map((item) => (
+//               <li>
+//                 {item.name}-{item.price}-{item.quantity}-
+//                 {item.price * item.quantity}
+//               </li>
+//             ))}
+//         </ol>
+//       </p>
+//       <p>Order Value:{orderValue}</p>
+//       <p>
+//         <button onClick={handleNext}>Next</button>
+//       </p>
+//     </div>
+//   );
+// }
 
 // import { useState } from "react";
 // import axios from "axios";
