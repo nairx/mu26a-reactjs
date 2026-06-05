@@ -4,6 +4,7 @@ import Cart from "./Cart";
 import Home from "./Home";
 import Orders from "./Orders";
 import Login from "./Login";
+import Register from "./Register";
 import RootLayout from "./RootLayout"
 export default function App() {
   const router = createBrowserRouter([
@@ -15,6 +16,7 @@ export default function App() {
         { path: "cart", element: <Cart /> },
         { path: "orders", element: <Orders /> },
          { path: "login", element: <Login /> },
+         { path: "register", element: <Register /> },
       ],
     },
   ])
