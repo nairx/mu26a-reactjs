@@ -1,40 +1,70 @@
-import { useState } from "react";
-import axios from "axios";
+import React from 'react'
 
 export default function App() {
-  const [user, setUser] = useState({});
-  const API_URL = "http://localhost:5000/users";
-  const handleSubmit = async () => {
-    await axios.post(API_URL, user);
-  };
   return (
     <div>
-      <h3>Registration Form</h3>
+      <h2>Supermarket Billing Counter</h2>
       <p>
-        <input
-          type="text"
-          onChange={(e) => setUser({ ...user, name: e.target.value })}
-          placeholder="Name"
-        />
+        <select>
+          <option>-- Select Product --</option>
+          <option>Product 1</option>
+          <option>Product 2</option>
+          <option>Product 3</option>
+        </select>
+        <input type="number" placeholder='Price' />
+        <input type="number" placeholder='Quantity' />
+        <button>Add</button>
       </p>
       <p>
-        <input
-          type="text"
-          onChange={(e) => setUser({ ...user, email: e.target.value })}
-          placeholder="Email"
-        />
+        Order Value:
       </p>
       <p>
-        <input
-          type="password"
-          onChange={(e) => setUser({ ...user, password: e.target.value })}
-          placeholder="Password"
-        />
+        <button>Next</button>
       </p>
-      <button onClick={handleSubmit}>Submit</button>
     </div>
-  );
+  )
 }
+
+
+
+
+// import { useState } from "react";
+// import axios from "axios";
+
+// export default function App() {
+//   const [user, setUser] = useState({});
+//   const API_URL = "http://localhost:5000/users";
+//   const handleSubmit = async () => {
+//     await axios.post(API_URL, user);
+//   };
+//   return (
+//     <div>
+//       <h3>Registration Form</h3>
+//       <p>
+//         <input
+//           type="text"
+//           onChange={(e) => setUser({ ...user, name: e.target.value })}
+//           placeholder="Name"
+//         />
+//       </p>
+//       <p>
+//         <input
+//           type="text"
+//           onChange={(e) => setUser({ ...user, email: e.target.value })}
+//           placeholder="Email"
+//         />
+//       </p>
+//       <p>
+//         <input
+//           type="password"
+//           onChange={(e) => setUser({ ...user, password: e.target.value })}
+//           placeholder="Password"
+//         />
+//       </p>
+//       <button onClick={handleSubmit}>Submit</button>
+//     </div>
+//   );
+// }
 
 // import { useEffect, useState } from "react";
 // import axios from "axios";
