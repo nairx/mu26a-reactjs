@@ -12,6 +12,12 @@ export default function Users() {
       console.log(err);
     }
   };
+
+  const deleteUser = async (userId) => {
+    const res = await axios.delete(`${url}/delete/${userId}`);
+    fetchUsers();
+  };
+
   useEffect(() => {
     fetchUsers();
   }, []);
@@ -22,7 +28,8 @@ export default function Users() {
         {users &&
           users.map((user) => (
             <li key={user._id}>
-              {user.name}-{user.email}-{user.role}
+              {user.name}-{user.email}-{user.role}-
+              <button onClick={() => deleteUser(user._id)}>Delete</button>
             </li>
           ))}
       </ol>
