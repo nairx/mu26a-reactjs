@@ -10,6 +10,7 @@ import RootLayout from "./RootLayout";
 import Order from "./Order";
 import AdminLayout from "./AdminLayout";
 import Users from "./Users";
+import EditProduct from "./EditProduct";
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -27,6 +28,7 @@ export const router = createBrowserRouter([
                     { index: true, element: <Users /> },
                      { path: "editUser/:userId", element: <EditUser /> },
                     { path: "products", element: <Products /> },
+                      { path: "editProduct/:productId", element: <EditProduct /> },
                     { path: "orders", element: <Orders /> },
                 ],
             },
