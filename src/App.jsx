@@ -1,39 +1,16 @@
-import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Cart from "./Cart";
-import Home from "./Home";
-import Orders from "./Orders";
-import Login from "./Login";
-import Products from "./Products";
-import Register from "./Register";
-import RootLayout from "./RootLayout";
-import Order from "./Order";
-import AdminLayout from "./AdminLayout";
-import Users from "./Users";
+import React, { useState } from "react";
+import { createContext } from "react";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./router.jsx";
+export const AppContext = createContext();
 export default function App() {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <RootLayout />,
-      children: [
-        { index: true, element: <Home /> },
-        { path: "cart", element: <Cart /> },
-        { path: "orders", element: <Orders /> },
-        { path: "login", element: <Login /> },
-        { path: "register", element: <Register /> },
-        {
-          path: "admin",
-          element: <AdminLayout />,
-          children: [
-            { index: true, element: <Users /> },
-            { path: "products", element: <Products /> },
-            {path:"orders",element:<Order/>}
-          ],
-        },
-      ],
-    },
-  ]);
-  return <RouterProvider router={router} />;
+  const [user, setUser] = useState({});
+  const [cart, setCart] = useState([]);
+  return (
+    <AppContext.Provider value={{ user, setUser, cart, setCart }}>
+      <RouterProvider router={router} />
+    </AppContext.Provider>
+  );
 }
 
 // import React, { useState } from "react";
