@@ -5,6 +5,7 @@ import Orders from "./Orders";
 import Login from "./Login";
 import Products from "./Products";
 import Register from "./Register";
+import EditUser from "./EditUser";
 import RootLayout from "./RootLayout";
 import Order from "./Order";
 import AdminLayout from "./AdminLayout";
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
                 element: <AdminLayout />,
                 children: [
                     { index: true, element: <Users /> },
+                     { path: "editUser/:userId", element: <EditUser /> },
                     { path: "products", element: <Products /> },
                     { path: "orders", element: <Orders /> },
                 ],

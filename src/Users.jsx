@@ -1,15 +1,16 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 export default function Users() {
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState();
-   const url = import.meta.env.VITE_API_URL + "/users";
+  const url = import.meta.env.VITE_API_URL + "/users";
   const handleRegister = async () => {
     const res = await axios.post(`${url}/register`, user);
-    fetchUsers()
+    fetchUsers();
   };
- 
+
   const fetchUsers = async () => {
     try {
       const res = await axios.get(`${url}/get`);
@@ -50,7 +51,7 @@ export default function Users() {
           placeholder="Password"
         />
 
-         <input
+        <input
           type="text"
           onChange={(e) => setUser({ ...user, role: e.target.value })}
           placeholder="Role"
@@ -63,7 +64,8 @@ export default function Users() {
         {users &&
           users.map((user) => (
             <li key={user._id}>
-              {user.name}-{user.email}-{user.role}-
+              <Link to={`editUser/${user._id}`}> {user.name}</Link>-{user.email}
+              -{user.role}-
               <button onClick={() => deleteUser(user._id)}>Delete</button>
             </li>
           ))}
