@@ -54,7 +54,7 @@ export default function Products() {
           products.map((product) => (
             <li key={product._id}>
               <Link to={`/admin/editProduct/${product._id}`}> {product.name}</Link>-
-              {product.price}-{product.desc}-{product.imgUrl}-
+              {product.price}-{product.description}-{product.imgUrl}-
               <button onClick={() => handleDelete(product._id)}>Delete</button>
             </li>
           ))}
