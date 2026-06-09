@@ -2,9 +2,11 @@ import React from "react";
 import { AppContext } from "./App";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 export default function Cart() {
   const { cart, setCart, user } = useContext(AppContext);
   const Navigate = useNavigate();
+  const url = import.meta.env.VITE_API_URL + "/orders";
   const orderValue = cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0,
@@ -28,7 +30,16 @@ export default function Cart() {
   const deleteItem = (id) => {
     setCart(cart.filter((item) => item._id !== id));
   };
-  const placeOrder = () => {};
+  const placeOrder = async () => {
+    const order = {
+      email: user.email,
+      items: cart,
+      orderValue: orderValue,
+    };
+    const res = await axios.post(`${url}/create`, order);
+    setCart({});
+    Navigate("/order");
+  };
   return (
     <div>
       My Cart
