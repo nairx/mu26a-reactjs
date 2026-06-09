@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 export default function Cart() {
   const { cart, setCart, user } = useContext(AppContext);
-  const Navigate = useNavigate()
+  const Navigate = useNavigate();
   const orderValue = cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0,
@@ -28,9 +28,7 @@ export default function Cart() {
   const deleteItem = (id) => {
     setCart(cart.filter((item) => item._id !== id));
   };
-  const placeOrder = () => {
-    
-  }
+  const placeOrder = () => {};
   return (
     <div>
       My Cart
@@ -47,8 +45,11 @@ export default function Cart() {
         ))}
       Order Value:{orderValue}
       <p>
-        <button onClick={placeOrder}>Place Order</button>
-        <button onClick={() => Navigate("/login")}>Login to Order</button>
+        {user?.email ? (
+          <button onClick={placeOrder}>Place Order</button>
+        ) : (
+          <button onClick={() => Navigate("/login")}>Login to Order</button>
+        )}
       </p>
     </div>
   );
