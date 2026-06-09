@@ -12,7 +12,6 @@ export default function Login() {
   const Navigate = useNavigate();
   const handleLogin = async () => {
     const res = await axios.post(`${url}/users/login`, { email, password });
-    console.log(res.data.user)
     if (res.data.user) {
       setUser(res.data.user);
       Navigate("/");

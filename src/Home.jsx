@@ -3,7 +3,7 @@ import { AppContext } from "./App";
 import "./Home.css";
 import axios from "axios";
 export default function Home() {
-  const { user, cart,setCart } = useContext(AppContext);
+  const { user, cart, setCart } = useContext(AppContext);
   const [products, setProducts] = useState([]);
   const url = import.meta.env.VITE_API_URL + "/products";
   const fetchProducts = async () => {
@@ -14,7 +14,10 @@ export default function Home() {
     fetchProducts();
   }, []);
   const addToCart = (product) => {
-    setCart([...cart, {...product,quantity:1}]);
+    const found = cart.find((item) => item._id === product._id);
+    if (!found) {
+      setCart([...cart, { ...product, quantity: 1 }]);
+    }
   };
   return (
     <div className="row">
@@ -26,7 +29,7 @@ export default function Home() {
             <p>{product.description}</p>
             <h4>{product.price}</h4>
             <p>
-              <button onClick={()=>addToCart(product)}>Add to Cart</button>
+              <button onClick={() => addToCart(product)}>Add to Cart</button>
             </p>
           </div>
         ))}
