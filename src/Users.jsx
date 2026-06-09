@@ -2,7 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useContext } from "react";
+import { AppContext } from "./App";
 export default function Users() {
+  const { user: currentUser } = useContext(AppContext);
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState();
   const url = import.meta.env.VITE_API_URL + "/users";
@@ -13,7 +16,12 @@ export default function Users() {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get(`${url}/get`);
+      // const res = await axios.get(`${url}/get`);
+      const res = await axios.get(`${url}/get`, {
+        headers: {
+          Authorization: `Bearer ${currentUser.token}`,
+        },
+      });
       setUsers(res.data.users);
     } catch (err) {
       console.log(err);

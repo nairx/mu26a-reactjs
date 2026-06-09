@@ -6,6 +6,7 @@ export default function Register() {
   const url = import.meta.env.VITE_API_URL;
   const Navigate = useNavigate();
   const handleRegister = async () => {
+    console.log(user)
     const res = await axios.post(`${url}/users/register`, user);
     Navigate("/login");
   };

@@ -4,5 +4,9 @@
 }
 
 .row div{
-    margin:5px
+    margin:5px;
+    border: 1px gray solid;
+    padding: 3px;
+
+
 }

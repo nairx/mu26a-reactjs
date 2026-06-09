@@ -17,7 +17,7 @@ export default function Home() {
     <div className="row">
         {products && products.map(product=>(
         <div key={product._id}>
-          <img src={product.imgUrl}/>
+          <img src={product.imgUrl} width={300}/>
           <h3>{product.name}</h3>
           <p>{product.description}</p>
           <h4>{product.price}</h4>
