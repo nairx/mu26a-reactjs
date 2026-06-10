@@ -7,7 +7,7 @@ export default function Cart() {
   const { cart, setCart, user } = useContext(AppContext);
   const Navigate = useNavigate();
   const url = import.meta.env.VITE_API_URL + "/orders";
-  const orderValue = cart.reduce(
+  const orderValue = cart.length > 0 && cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0,
   );
@@ -43,7 +43,7 @@ export default function Cart() {
   return (
     <div>
       My Cart
-      {cart &&
+      {cart.length > 0 &&
         cart.map((item) => (
           <div key={item._id}>
             {item.name}-{item.price}-
