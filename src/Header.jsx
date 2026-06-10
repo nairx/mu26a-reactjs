@@ -17,14 +17,17 @@ function Header() {
         <li>
           <Link to="order">Order</Link>
         </li>
-        {user.role === "admin" && (
+        {user?.role === "admin" && (
           <li>
             <Link to="admin">Admin</Link>
           </li>
         )}
-        <li>
+        {user?.token ?  <li>
+          <Link to="login">Logout</Link>
+        </li> :  <li>
           <Link to="login">Login</Link>
-        </li>
+        </li> }
+       
       </div>
     </div>
   );

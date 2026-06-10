@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import axios from "axios";
 import { AppContext } from "./App";
@@ -19,6 +19,9 @@ export default function Login() {
       setMessage("Invalid User");
     }
   };
+  useEffect(() => {
+    setUser({});
+  }, []);
   return (
     <div>
       <h3>Login Form</h3>
