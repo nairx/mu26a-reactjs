@@ -20,16 +20,16 @@ export default function Home() {
     }
   };
   return (
-    <div className="row">
+    <div className="flex justify-center flex-wrap">
       {products &&
         products.map((product) => (
-          <div key={product._id}>
+          <div className="m-1  border border-gray-500" key={product._id}>
             <img src={product.imgUrl} width={300} />
-            <h3>{product.name}</h3>
+            <h3 className="box">{product.name}</h3>
             <p>{product.description}</p>
-            <h4>{product.price}</h4>
+            <h4 className="font-bold">₹{product.price}</h4>
             <p>
-              <button onClick={() => addToCart(product)}>Add to Cart</button>
+              <button className="bg-gray-500 hover:bg-gray-300 text-white w-full font-bold p-2" onClick={() => addToCart(product)}>Add to Cart</button>
             </p>
           </div>
         ))}

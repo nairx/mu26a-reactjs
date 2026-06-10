@@ -7,6 +7,8 @@
     margin:5px;
     border: 1px gray solid;
     padding: 3px;
+}
 
-
+.box{
+    @apply lg:text-3xl md:text-2xl sm:text-xl bg-orange-500 text-gray-300 font-bold m-1 p-1 border border-blue-900 rounded-lg
 }
